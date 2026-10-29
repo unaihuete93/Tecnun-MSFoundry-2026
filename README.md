@@ -1,9 +1,9 @@
-# Azure Foundry Labs
+# Microsoft Foundry Labs
 
-# Introduction to Azure Foundry
+# Introduction to Microsoft Foundry
 
 ## Scenarios Covered
-- TASK 1 - Setting up Azure Foundry
+- TASK 1 - Setting up Microsoft Foundry
 - TASK 2 - Exploring the Model Catalog
 - TASK 3 - Model Deployment
 - TASK 4 - Understanding GPT models using Playground
@@ -12,7 +12,7 @@
     - System Message
     - Few Shot Examples
     - Parameters
-- TASK 5 - RAG (Retrieval Augmented Generation) with Azure Foundry
+- TASK 5 - RAG (Retrieval Augmented Generation) with Microsoft Foundry
 - TASK 6 - Responsible AI 
 - TASK 7 - Python App 
 
@@ -21,32 +21,32 @@
 ### EXERCISES TO BE UPLOADED
 There will be sections in the document were the student will have to upload a file to ADI to show they have completed the exercise.
 
-### TASK 1 - Setting up Azure Foundry
+### TASK 1 - Setting up Microsoft Foundry
 
 In this task you will see the Azure AI Foundry that has been set up for you. You will also see the models that have been deployed to this Foundry.
 
-If you open the Azure Portal (https://portal.azure.com) and navigate to the resource group `AzureFoundry-Grado-Master`, you will see a resource called `foundryproject-tecnun-resource`. This is the Azure Foundry resource that has been set up for you.
+If you open the Azure Portal (https://portal.azure.com) and navigate to the resource group `rg-foundry-unav`, you will see a resource called `foundry-tecnun-resource`. This is the Microsoft Foundry resource that has been set up for you.
 
 Open the resource and expand all the options on the left column. You will see the following options:
 
-![Azure Foundry Resource](images/Foundry-Portal.png)
+![Microsoft Foundry Resource](images/Foundry-Portal.png)
 
-- **Overview**: This is the overview of the Azure Foundry resource. You can see the location, resource group, subscription, region and other details about the resource.
+- **Overview**: This is the overview of the Microsoft Foundry resource. You can see the location, resource group, subscription, region and other details about the resource.
     
 
-- **Access Control (IAM)**: This is where you can manage access to the Azure Foundry resource. You can add or remove users and assign roles to them.
+- **Access Control (IAM)**: This is where you can manage access to the Microsoft Foundry resource. You can add or remove users and assign roles to them.
 
     > NOTE: You have been given the **Azure AI User** role for this resource. You will be able to use the models deployed to this Foundry, but you will not be able to manage the resource.
 
-- **Keys and Endpoint**: This is where you can find the keys and endpoint for the Azure Foundry resource. You will need these to connect to the Foundry from your application.
+- **Keys and Endpoint**: This is where you can find the keys and endpoint for the Microsoft Foundry resource. You will need these to connect to the Foundry from your application.
 
-- **Networking**: This is where you can manage the networking settings for the Azure Foundry resource. You can configure virtual networks, private endpoints, and other networking settings.
+- **Networking**: This is where you can manage the networking settings for the Microsoft Foundry resource. You can configure virtual networks, private endpoints, and other networking settings.
 
-- **Monitoring**: This is where you can monitor the Azure Foundry resource. You can view metrics, logs, and other monitoring data.
+- **Monitoring**: This is where you can monitor the Microsoft Foundry resource. You can view metrics, logs, and other monitoring data.
 
-From the overview page, click on the link to the Foundry Portal (https://ai.azure.com). This will take you to the Azure Foundry portal.
+From the overview page, click on the link to the Foundry Portal (https://ai.azure.com). This will take you to the Microsoft Foundry portal.
 
-![Azure Foundry Resource](images/Foundry-Portal.png)
+![Microsoft Foundry Resource](images/Foundry-Portal.png)
 
 The Foundry can be used for several scenarios, including:
 - Model Management: You can deploy, manage, and monitor AI models in a centralized location.
@@ -60,56 +60,44 @@ In this lab, we will focus on the **Model Catalog** and **Playgrounds** sections
 
 ### TASK 2 - Exploring the Model Catalog
 
-In this task, you will explore the Model Catalog in the Azure Foundry portal. The Model Catalog is where you can find all the AI models that have been deployed to the Foundry.
+In this task, you will explore the Model Catalog in the Microsoft Foundry portal. The Model Catalog is where you can find all the AI models that have been deployed to the Foundry.
 
-Click on the **Model Catalog** option in the left column. You will see a list of all the models that have been deployed to the Foundry.
+Click on the **Discover > Models** option in the left column. You will see a list of all the models that have been deployed to the Foundry.
 
 ![Model Catalog](images/Catalog.png)
 
-You will see Azure AI Foundry offers so many different types and providers of models:
+You will see Foundry offers so many different types and providers of models:
 
 - Providers like: Azure OpenAI, Microsoft, Hugging Face, Cohere, etc.
 - Types like: Chat, Text Generation, Embeddings, Image Generation, etc.
 
-Search for `gpt-4.1` in the search bar:
+**Explore Foundry Models**
 
-![Search for GPT-4](images/gpt4.1.png)
+Models sold by Azure are also hosted by Azure and operated by Azure as part of the Foundry Models service. They include all Azure OpenAI models and specific, selected models from top providers. These models are billed through your Azure subscription, covered by Azure service-level agreements, and supported by Microsoft.
 
-Focus on the 3 model options given for GPT-4.1:
-- GPT-4.1 (Azure OpenAI)
-- GPT-4.1-mini (Azure OpenAI)
-- GPT-4.1-nano (Azure OpenAI)
+Here for example you can find the details for OpenAI models offered within Foundry: https://learn.microsoft.com/en-us/azure/foundry/foundry-models/concepts/models-sold-directly-by-azure?pivots=azure-openai#azure-openai-in-microsoft-foundry-models
 
-This shows the different model variations that are available for GPT-4.1. Remember the main differences discussed in class between LLM and SLM models. The GPT-4.1 (Azure OpenAI) is a Large Language Model (LLM) while the GPT-4.1-mini and GPT-4.1-nano are Small Language Models (SLM).
+**Model Leaderboards**
 
-Click on the `GPT-4.1 (Azure OpenAI)` model. You will see the details of the model, including the description, version, provider, and other details.
+The leaderboards help you compare models across multiple dimensions so you can choose the right model for your use case. Here are some guidelines for interpreting the results:
 
-![GPT-4.1 Model Details](images/Model-Details.png)
+- **Quality index**: A higher quality index indicates stronger overall performance across reasoning, coding, math, and knowledge tasks. Compare the quality index across models to identify top performers for general-purpose language tasks.
+- **Safety scores**: Lower attack success rates indicate more robust models. Consider safety scores alongside quality scores, especially for customer-facing applications where harmful output is a significant concern.
+- **Performance trade-offs**: Use the latency and throughput metrics to understand the real-world responsiveness of a model. A model with high quality but high latency might not suit real-time applications.
+- **Cost considerations**: The estimated cost metric uses a three-to-one input-to-output token ratio. Adjust your expectations based on your actual workload's input-to-output ratio.
+- **Scenario leaderboards**: If your use case maps to a specific scenario (for example, coding or math), start with the scenario leaderboard to find models optimized for that task rather than relying solely on the overall quality index.
 
- - **Description**: This is a brief description of the model. It provides an overview of the model's capabilities and use cases.
- - **Version**: This is the version of the model. It indicates the specific iteration of
-    the model that is deployed.
-- **Input/Outputs**: This section provides information about the input and output formats of the model. It describes the expected input data and the format of the output generated by the model.
-- **Pricing**: This section provides information about the pricing of the model. It describes the cost associated with using the model, including any usage-based fees or subscription plans.
-- **Regions**: This section provides information about the regions where the model is available. It describes the geographic locations where the model can be accessed and used.
+Go to the leaderboard. Identify the information for **GPT-6-Luna**. It offers really good performance for the cost. We will use this one during the labs.
 
-Take a look at the **Benchmarks** tab. This tab provides information about the performance of the model on various benchmarks. You can see the results of the model on different tasks and datasets.
-
-Lets compare the three models mentioned before: GPT-4.1 (Azure OpenAI), GPT-4.1-mini (Microsoft), and GPT-4.1-nano (Microsoft).
-
-Click on **compare with more models** , delete existing ones and select the other two models. You will see a comparison of the three models, including their performance on various benchmarks.
-
-For example, you can see the Quality/Cost comparison chart:
-
-![Model Comparison](images/benchmark.png)
+![leaderboard](images/leaderboard.png)
 
 #### TASK 2 - EXERCISE 1
 
-1. Take a screenshot of the comparison chart for the three GPT-4.1 models, comparing Quality/Latency and upload it to ADI as proof of completing this exercise. **The picture must show the USERNAME/EMAIL to be taken as VALID**. Upload as `TASK2-EXERCISE1-<YOUR NAME>.png`
+Now go back to the Models tab and open the **compare models** option. 
 
-Example:
+Compare the following GPT 6 models side by side [GPT-6 models](https://learn.microsoft.com/en-us/azure/foundry/foundry-models/concepts/models-sold-directly-by-azure?pivots=azure-openai#gpt-6)
 
-![Model Comparison](images/TASK2-exercise.png)
+> ACTION! **Take a screenshot** of the comparison chart for the three GPT models. **The picture must show the USERNAME/EMAIL to be taken as VALID**. 
 
 
 ### TASK 3 - Model Deployment
@@ -273,7 +261,7 @@ You will see the model is not able to provide a detailed response, as it does no
 Try you own example question that reflects how the **parameters** are used by the model. Upload the results as `TASK4-EXERCISE5-<YOUR NAME>.png`. **The picture must show the USERNAME/EMAIL to be taken as VALID**.
 
 
-### TASK 5 - RAG (Retrieval Augmented Generation) with Azure Foundry
+### TASK 5 - RAG (Retrieval Augmented Generation) with Microsoft Foundry
 
 What is RAG?
 
@@ -291,12 +279,12 @@ These are steps followed by a tipical RAG architecture:
     3.1 The user input/question
     3.2 The relevant information retrieved from the external source, the **relevant search results**.
 
-On this labs we are going to Analyze each component of the RAG architecture and test it in practice using Azure Foundry.
+On this labs we are going to Analyze each component of the RAG architecture and test it in practice using Microsoft Foundry.
 
 ### Task 5 - 1 - Components Involved in RAG
 
 The main components involved in a RAG architecture are:
-1. **Large Language Model (LLM) or SLM (Small Language Model)**: This is the core component of the RAG architecture. It is responsible for generating text based on the input it receives. In our case, we will use the `gpt-4.1-mini (Azure OpenAI)` model deployed in the Azure Foundry. **Already explained in previous tasks**.
+1. **Large Language Model (LLM) or SLM (Small Language Model)**: This is the core component of the RAG architecture. It is responsible for generating text based on the input it receives. In our case, we will use the `gpt-4.1-mini (Azure OpenAI)` model deployed in the Microsoft Foundry. **Already explained in previous tasks**.
 
 2. **Data Index / Vector Database**: This component is responsible for retrieving relevant documents or information from an external knowledge source based on the user's input. In our case, we will use an **Azure Search** resource as the Data Index / Vector Database keeping our custom data
 
@@ -348,7 +336,7 @@ Azure search has been configured to use the `text-embedding-ada-002` model from 
 
 ### Task 5 - 4 Test without RAG
 
-Go to the Azure Foundry portal (https://ai.azure.com) and open the Chat Playground for the `gpt-4.1-mini (Azure OpenAI)` model deployed in the Azure Foundry.
+Go to the Microsoft Foundry portal (https://ai.azure.com) and open the Chat Playground for the `gpt-4.1-mini (Azure OpenAI)` model deployed in the Microsoft Foundry.
 
 With the default configuration of the model (no RAG components added), try to ask a question related to the travel brochures, for example:
 "Tell me about the best months to visit London"
@@ -359,7 +347,7 @@ You will see the model only provide a generic answer based on its training data.
 
 ### Task 5 - 5 - Putting it all together - RAG
 
-Lets try all components together. We will use the Chat Playground for the `gpt-4.1-mini (Azure OpenAI)` model deployed in the Azure Foundry to make calls to the model. Go  to the AI Foundry portal (https://ai.azure.com) and open the Chat Playground for the `gpt-4.1-mini (Azure OpenAI)` model.
+Lets try all components together. We will use the Chat Playground for the `gpt-4.1-mini (Azure OpenAI)` model deployed in the Microsoft Foundry to make calls to the model. Go  to the AI Foundry portal (https://ai.azure.com) and open the Chat Playground for the `gpt-4.1-mini (Azure OpenAI)` model.
 
 ![Playground](images/Playground-Start.png)
 
@@ -432,11 +420,11 @@ Microsoft has a strong commitment to Responsible AI. Our responsible AI principl
 
 Every microsoft AI service includes responsible AI features to help you build and deploy AI applications responsibly.
 
-In this task you will explore the responsible AI features available in the Azure Foundry. Every model deployed in Foundry included a Content Filter by default.
+In this task you will explore the responsible AI features available in the Microsoft Foundry. Every model deployed in Foundry included a Content Filter by default.
 
 This content filter is used to detect and filter out harmful or inappropriate content generated by the model. The content filter is based on a set of predefined rules and policies that are designed to ensure the safety and appropriateness of the content generated by the model.
 
-Lets try those default content filters in the Chat Playground for the `gpt-4.1-mini (Azure OpenAI)` model deployed in the Azure Foundry.
+Lets try those default content filters in the Chat Playground for the `gpt-4.1-mini (Azure OpenAI)` model deployed in the Microsoft Foundry.
 
 Here you can see how the `gpt-4.1-mini (Azure OpenAI)` model has a content filter applied by default.
 
@@ -469,7 +457,7 @@ Try you own example question that reflects how the content filter is used by the
 
 ### Task 7 - Python App
 
-In this task, you will explore a sample Python application that uses the Azure Foundry to make calls to the `gpt-4.1-mini (Azure OpenAI)` model deployed in the Azure Foundry.
+In this task, you will explore a sample Python application that uses the Microsoft Foundry to make calls to the `gpt-4.1-mini (Azure OpenAI)` model deployed in the Microsoft Foundry.
 
 Instead of using the Chat Playground, you will use a Python application to make calls to the model. Customers in real scenarios would use #C, python, Java, etc. to call the model from their applications.
 
@@ -513,7 +501,7 @@ response = client.complete(
 print(response.choices[0].message.content)
 ```
 
-3. Save the changes , (CTRL + S). Now you need to replace `<API_KEY>` with the actual API key for the Azure Foundry resource. You can find the API key in the Azure Foundry portal > Models + endpoints > select the `gpt-4.1-mini (Azure OpenAI)` model > Endpoint section . Copy the value of `Key` and replace `<API_KEY>` with this value in the code. Save the changes again (CTRL + S).
+3. Save the changes , (CTRL + S). Now you need to replace `<API_KEY>` with the actual API key for the Microsoft Foundry resource. You can find the API key in the Microsoft Foundry portal > Models + endpoints > select the `gpt-4.1-mini (Azure OpenAI)` model > Endpoint section . Copy the value of `Key` and replace `<API_KEY>` with this value in the code. Save the changes again (CTRL + S).
 
 4. You need to install the Azure AI Inference library. Type the following command in the Cloud Shell:
 
@@ -528,7 +516,7 @@ python gptapp.py
 ```
 ![cloud shell run](images/program.png)
 
-The app will respond to the message "I am going to Paris, what should I see?" using the `gpt-4.1-mini (Azure OpenAI)` model deployed in the Azure Foundry.
+The app will respond to the message "I am going to Paris, what should I see?" using the `gpt-4.1-mini (Azure OpenAI)` model deployed in the Microsoft Foundry.
 
 ### TASK 7 - EXERCISE 1
 
