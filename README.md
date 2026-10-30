@@ -10,7 +10,6 @@
     - Training Data
     - Conversation History
     - System Message
-    - Few Shot Examples
     - Parameters
 - TASK 5 - RAG (Retrieval Augmented Generation) with Microsoft Foundry
 - TASK 6 - Responsible AI 
@@ -19,7 +18,7 @@
 
 
 ### EXERCISES TO BE UPLOADED
-There will be sections in the document were the student will have to upload a file to ADI to show they have completed the exercise.
+For each exercise, include the results in your submission document. Upload the results to the doc you will  upload to ADI.
 
 ### TASK 1 - Setting up Microsoft Foundry
 
@@ -97,7 +96,7 @@ Now go back to the Models tab and open the **compare models** option.
 
 Compare the following GPT 6 models side by side [GPT-6 models](https://learn.microsoft.com/en-us/azure/foundry/foundry-models/concepts/models-sold-directly-by-azure?pivots=azure-openai#gpt-6)
 
-> ACTION! **Take a screenshot** of the comparison chart for the three GPT models. **The picture must show the USERNAME/EMAIL to be taken as VALID**. 
+> ACTION! **Take a screenshot** of the comparison chart for the three GPT models. Upload the results to the doc you will  upload to ADI. **The picture must show the USERNAME/EMAIL to be taken as VALID**. 
 
 
 ### TASK 3 - Model Deployment
@@ -120,140 +119,92 @@ In this task, you will review model deployment concepts and use an existing depl
 
 ### TASK 4 - Understanding GPT models using Playground
 
-In this task, you will explore the Chat Playground for the `gpt-4.1-mini (Azure OpenAI)` model. The Chat Playground is an interface that can be used to make calls to the model.
+In this task, you will use the model playground for the existing **GPT-6-Luna** deployment (model ID: `gpt-6-luna`) from Task 3. You will explore training data, conversation history, instructions, and parameters.
 
-You will learn about many different concepts related to GPT models in a practical way.
+1. In [Microsoft Foundry](https://ai.azure.com), keep **New Foundry** enabled and select the lab project associated with `foundry-tecnun-resource` in `rg-foundry-unav`.
+2. Select **Build > Models**, then select the existing deployment from Task 3 to open its playground. Confirm its deployment name and underlying model; the deployment name can differ from `gpt-6-luna`.
+3. Use the **Playground** pane to review the system prompt/instructions and available parameters. Change only your playground request settings, not the deployment, model guardrails, or shared infrastructure. **Do not save an agent or create resources for these exercises**.
+4. Start a fresh chat before each independent comparison, retaining the same deployment. Verify the instructions and parameter values before each run. Keep tools, web search, and external knowledge out of these tests so you can examine the model and supplied context alone. If the required controls are unavailable or would change shared configuration, ask your instructor before proceeding.
+5. Lets keep all the Playground setup clean. **Please delete any Tools (like websearch) enabled**.
+
+Responses can vary. Compare what actually happens rather than expecting the exact wording of a sample answer. Upload the results to the doc you will  upload to ADI. Keep your **USERNAME/EMAIL** visible, but do not include API keys, tokens, or other credentials.
 
 #### TASK 4 -  1 Training Data
 
-The training data is a crucial aspect of any machine learning model, including GPT models. It refers to the dataset that is used to train the model, allowing it to learn patterns and relationships in the data.
+Training data helps a model learn patterns and general knowledge. A training-data cutoff is not a guarantee that the model knows every earlier fact or that all its answers are correct. A model can also use information supplied in the current conversation; without retrieval tools, it cannot independently check live sources.
 
-When asking questions to a GPT model we need to take into account that the model by itself (no extra components) can only answer questions based on the data it has been trained on.
+1. Check the deployed model version from Task 3 and find its documented training-data cutoff in the [GPT-6 model table](https://learn.microsoft.com/en-us/azure/foundry/foundry-models/concepts/models-sold-directly-by-azure?pivots=azure-openai#gpt-6). Do not use the model's description of its own cutoff as evidence.
+2. In a fresh chat without tools or external knowledge, ask a time-sensitive question about an event after that cutoff. For example: "What was the last game of Real Sociedad? State what you cannot verify."
+3. Independently check an authoritative, dated source outside the playground. Compare the answer with that source: is it correct, outdated, unsupported, or explicit about uncertainty? Record the event date and source in your submission evidence. A correct answer to one question does not prove access to current information.
 
-Try the following example, ask the model "Who is the president of the USA?" and click on the **Send** button.
-
-![Playground Example 1](images/Training-Data-Question.png)
-
-You can see the model answers gives "Joe Biden" as the answer. We can clearly see that the model can answer this question based on its training data, which is back from June 2024. This is one of the reasons why solutions like Microsoft Copilot or ChatGPT look for information not only in the model, they use web based searches for updated information. 
+Web search and retrieval-augmented generation (RAG) can supply more recent or private information as context. They are separate from the model's original training and will be explored later. Check the model training date here [model details](https://learn.microsoft.com/en-us/azure/foundry/foundry-models/concepts/models-sold-directly-by-azure?pivots=azure-openai#capabilities-2)
 
 #### TASK 4 - EXERCISE 1
-Try you own example question that reflects how the training data of the model may not be up to date. Upload the results as `TASK4-EXERCISE1-<YOUR NAME>.png`. **The picture must show the USERNAME/EMAIL to be taken as VALID**.
+Try your own time-sensitive question. Capture the prompt, response, and your comparison with a dated authoritative source, including any uncertainty or error. Upload the results to the doc you will  upload to ADI. **The picture must show the USERNAME/EMAIL to be taken as VALID**.
 
 #### TASK 4 - 2 Conversation History 
 
-The conversation history is an important aspect of agentic/chatbot solutions created using GPT models. It allows the model to keep track of the context and flow of the conversation, enabling it to provide more relevant and coherent responses.
+Conversation history supplies context for later turns. Referring to an earlier message is not the same as permanently learning a fact or changing the model's weights. Applications can supply history again or use API-managed conversation state; this is separate from an agent's persistent memory.
 
-Lets try the following example. Ask the model the following questions in sequence, replace `<YOUR NAME>` with your actual name:
-1. "Hello, my name is <YOUR NAME>."
-2. "What is my name?"
+1. Start a fresh chat with neutral instructions. Send: "For this conversation, my fictional project code is TECNUN-742."
+2. In the same chat, ask: "What is my fictional project code?" The model should usually be able to use the earlier message to answer.
+3. Start another fresh chat with the same deployment and neutral instructions. Do not copy the code into the new chat or instructions. Ask: "What is my fictional project code?"
+4. Compare the responses. Without the earlier context, the model has no reliable basis for knowing that code. A guess is not evidence of memory; if it repeats the code, check whether prior context or instructions were retained.
 
-![History example](images/Conversation-History.png)
-
-You will see the model is able to remember your name and provide it as the answer to the second question. Now the question should be **"DOES THE MODEL REALLY REMEMBER MY NAME?"**
-
-The answer is **NO**. The model does not really remember your name, what it does is to use the conversation history to provide context to the model. 
-
-In simple words, when calling the model, you are sending the conversation history as the request! You are able to choose how the conversation history is send/treated, it is one of the most interesting features to develop when creating agentic/chatbot solutions.
-
-Now try the following example, but first, change the **Paremeters** section and **Past messages included** to the minimum (1):
-
-1. "Hello, my name is <YOUR NAME>."
-2. "Where is Tecnun based?"
-3. "What is my name?"
-
-![History example 2](images/no-history.png)
-
-You will see the model is not able to remember your name and provide it as the answer to the third question. This is because the conversation history is not being sent to the model, so it does not have the context to provide a relevant answer.
 
 #### TASK 4 - EXERCISE 2
-Try you own example question that reflects how the conversation history is used by the model. Upload the results as `TASK4-EXERCISE2-<YOUR NAME>.png`. **The picture must show the USERNAME/EMAIL to be taken as VALID**.
+Try your own fictional fact and compare a follow-up in the same chat with the same question in a fresh chat. Capture both results. Upload the results to the doc you will  upload to ADI. **The picture must show the USERNAME/EMAIL to be taken as VALID**.
 
 #### TASK 4 - 3 System Message
 
-The system message is an important component of the GPT architecture. It provides context and instructions to the model, helping it understand the user's intent and the specific requirements of the task at hand.
+System instructions describe the assistant's task, behavior, and expected output.  Do not assume that every model uses identical message roles or parameters.
 
-In the Chat Playground, you can see the system message at the left of the chat interface, under "Give the model instructions and context".
-
-Try the following example with the default system message (do not change it):
-"The food was disgusting and the service was terrible."
-
-As the model does not have any context, it will provide a generic response.
-
-Now change the system message (click on "Apply Changes") to:
-"You are a food critic. You review restaurants and give them a rating of: Positive, Neutral, or Negative."
-
-And try the same example again:
-"The food was disgusting and the service was terrible."
+1. In a fresh chat, use neutral instructions: "You are a helpful assistant."
+2. Send: "The food was disappointing and the service was slow." Record how the model responds without a specific task.
+3. In the **Setup** pane, replace the system prompt/**instructions** with: "Classify restaurant reviews. Reply with exactly one label: Positive, Neutral, or Negative. Do not add an explanation." Apply the edit if the interface asks you to, and start a fresh chat with these instructions.
+4. Send the same review. Check whether the response follows the classification task and requested format. The intended label is `Negative`, but instruction following must be evaluated rather than assumed.
 
 ![System Message example](images/system-message.png)
 
-Now the model is able to provide a more relevant response, as it has the context of being a food critic.
+*Legacy illustration of an instruction-based comparison. Its controls and model output are not a reference for the current portal.*
 
-When you send a request to the model, the system message is sent as part of the request, providing context to the model. The model usually receives 3 types of messages:
-- System Message: Provides context and instructions to the model.
-- User Message: The message sent by the user.
-- Assistant Message: The message generated by the model.
+**Types on messages in model request**:
+| Type | Description |
+|------|-------------|
+| system message | Instructions for the assistant, defining its behavior and expected output. |
+| user message | Input from the user, including questions, prompts, or tasks. |
+| assistant message | Response from the assistant based on the system and user messages. |
 
-Many User/Assistant messages can be sent as part of the conversation history. (Also for the next technique discussed, Few Shot Examples).
 
 #### TASK 4 - EXERCISE 3
-Try you own example question that reflects how the system message is used by the model. Upload the results as `TASK4-EXERCISE3-<YOUR NAME>.png`. **The picture must show the USERNAME/EMAIL to be taken as VALID**.
+Create your own instruction-based task and compare the same input with neutral and task-specific instructions. Include the instructions and results. Upload the results to the doc you will  upload to ADI. **The picture must show the USERNAME/EMAIL to be taken as VALID**.
 
-#### TASK 4 - 4 Few Shot Examples
+#### TASK 4 - 4 Parameters
 
-Few shot examples are a powerful technique used in GPT models to provide the model with additional context and examples of the desired output. This helps the model understand the user's intent and generate more relevant and accurate responses.
+Parameters affect generation, but the available controls depend on the deployed model version and API. Review the [reasoning-model guidance](https://learn.microsoft.com/en-us/azure/foundry/openai/how-to/reasoning) and the parameters exposed in **Setup**. Do not assume that a parameter from an older GPT playground is supported here.
 
-In the Chat Playground, you can add  few shot examples at the left of the chat interface, under "Add Section > Examples".
+- **Max Completion tokens**: An upper bound, not a target length. For reasoning models, the generation budget includes reasoning tokens as well as visible output. The API parameter is `max_output_tokens` for Responses or `max_completion_tokens` for Chat Completions; do not copy the older `max_tokens` parameter into reasoning-model calls.
+- **Reasoning effort**: Controls how much reasoning work a model can perform. Supported values and defaults vary by model; use only values offered for this deployment. More reasoning can increase latency and token usage without guaranteeing a better answer.
+- **Verbosity** (not in playground): Influences answer detail where supported. It is not a hard token cap.
+- **Temperature / Top P** (not in playground): Sampling controls where supported. Do not infer support from another reasoning model, and do not change both in the same comparison. Lower randomness does not guarantee correctness or identical responses.
 
-Try the following example:
-1. System Message: "You are a helpful assistant AI Assistant". (really generic to focus on the use of examples)
+Try the following controlled comparison:
 
-2. Request for the model: "what is the capital of France?"
+1. Restore neutral instructions and note the current parameter values. 
+2. In a fresh chat, set the output-token limit to **1000**, if accepted, and send: "Write a detailed guide to planning a university engineering project, covering requirements, design, testing, risks, and delivery."
+3. In another fresh chat, change only that limit to **100**, if accepted, and send the identical prompt. Keep instructions and other parameters unchanged.
+4. Compare completeness and visible output. If shown, record token usage and completion status. A low budget can be consumed by reasoning before any visible answer appears; an empty or truncated response is a valid observation, not proof that the playground is broken. If a value is rejected, record the error rather than repeatedly retrying or changing the deployment.
+5. Restore your original playground settings and neutral instructions before continuing to Task 5.
 
-You will see the model is free to give the response on the best way it thinks (free format text)
-
-Now lets use the **Few Shot Learning** technique to guide the model to provide a more structured response.
-1. System Message: "You are a helpful assistant AI Assistant". (really generic to focus on the use of examples)
-2. Add the following example ("Add Section > Examples") to get the answer in JSON format ("Apply changes" after adding the example):
-    - User: "What is the Capital of France?"
-    - Assistant: "{ "Capital": "Paris" }"
-  
-3. Request for the model: "What is the capital of Sweden?"
-
-You will see the model is able to provide the answer in the desired JSON format, as it has been given an example of the desired output. We "teach" the model how to answer by giving it an example.
-
-![Few Shot example](images/few-shot.png)
+Use only a few controlled runs: playground requests consume tokens and can incur charges. Never increase the deployment's TPM allocation or change its guardrails for this experiment.
 
 #### TASK 4 - EXERCISE 4
-Try you own example question that reflects how the **few shot examples** are used by the model. Upload the results as `TASK4-EXERCISE4-<YOUR NAME>.png`. **The picture must show the USERNAME/EMAIL to be taken as VALID**.
-   
-#### TASK 4 - 5 Parameters
+Try your own prompt with two values of one supported parameter (max tokens). Include the parameter name, values, and observed results, including any truncation or error. Upload the screenshot to the doc you will  upload to ADI. **The picture must show the USERNAME/EMAIL to be taken as VALID**.
 
-Parameters are settings that can be adjusted to control the behavior of the GPT model. They allow you to modify the model's responses and tailor them to your specific use case.
-
-In the Chat Playground, you can see the parameters section at the left of the chat interface, under "Parameters". Some of the most important parameters are:
-- **Temperature**: This parameter controls the randomness of the model's responses. A higher temperature value (e.g., 0.8) will result in more diverse and creative responses, while a lower temperature value (e.g., 0.2) will result in more focused and deterministic responses. 
-- **Max Tokens**: This parameter controls the maximum length of the model's responses. It limits the number of tokens (words or subwords) that the model can generate in its response.
-- And many more (less frequently used ones): Top P, Frequency Penalty, Presence Penalty, etc.
-
-Try the following example for Max Completion Tokens:
-1. System Message: "You are a helpful assistant AI Assistant". (really generic to focus on the use of examples)
-2. Max Completion Tokens: 1000
-3. Request for the model: "Explain me in detail what Tecnun is"
-
-![Max Tokens example](images/MaxTokens1000.png)
-
-You will see the model is able to provide a detailed response, as it has enough tokens to generate a long answer.
-
-Now change the Max Completion Tokens to 100 and try the same example again:
-
-![Max Tokens example 2](images/MaxToken100.png)
-
-You will see the model is not able to provide a detailed response, as it does not have enough tokens to generate a long answer.
-
-#### TASK 4 - EXERCISE 5
-Try you own example question that reflects how the **parameters** are used by the model. Upload the results as `TASK4-EXERCISE5-<YOUR NAME>.png`. **The picture must show the USERNAME/EMAIL to be taken as VALID**.
-
+Microsoft Learn references (verified **2026-10-30**):
+- [Microsoft Foundry model playground](https://learn.microsoft.com/en-us/azure/foundry/concepts/concept-playgrounds#model-playground)
+- [GPT-6 model IDs, versions, capabilities, and training-data cutoffs](https://learn.microsoft.com/en-us/azure/foundry/foundry-models/concepts/models-sold-directly-by-azure?pivots=azure-openai#gpt-6)
+- [Azure OpenAI reasoning models: API support, instructions, and token budgets](https://learn.microsoft.com/en-us/azure/foundry/openai/how-to/reasoning)
 
 ### TASK 5 - RAG (Retrieval Augmented Generation) with Microsoft Foundry
 
@@ -399,7 +350,7 @@ Show a Playground query that gives an answer citating the downloaded custom docu
 
 ![rag-example-2](images/rag-query.png)
 
-Upload the results as `TASK5-EXERCISE1-<YOUR NAME>.png`. **The picture must show the USERNAME/EMAIL to be taken as VALID**.
+Upload the results to the doc you will  upload to ADI. **The picture must show the USERNAME/EMAIL to be taken as VALID**.
 
 ### Task 6 - Responsible AI
 
@@ -447,7 +398,7 @@ All of those examples are using the default content filter provided by Microsoft
 **Some customer will even ask to DELETE the content filter**. This is not recommended, but it may be necessary for some use cases. **Can you think of any usecase/industry/scenario where deleting the content filter may be necessary?**
 
 ### Task 6 - EXERCISE 1
-Try you own example question that reflects how the content filter is used by the model, for a **Hate** scenario. It should show the content filter blocking a hateful response. Upload the results as `TASK6-EXERCISE1-<YOUR NAME>.png`. **The picture must show the USERNAME/EMAIL to be taken as VALID**.
+Try you own example question that reflects how the content filter is used by the model, for a **Hate** scenario. It should show the content filter blocking a hateful response. Upload the results to the doc you will  upload to ADI. **The picture must show the USERNAME/EMAIL to be taken as VALID**.
 
 ### Task 7 - Python App
 
@@ -514,7 +465,7 @@ The app will respond to the message "I am going to Paris, what should I see?" us
 
 ### TASK 7 - EXERCISE 1
 
-Try you **own example question** that reflects how to call the model from a Python application. Upload the results as `TASK7-EXERCISE1-<YOUR NAME>.png`. **The picture must show the USERNAME/EMAIL to be taken as VALID**.
+Try you **own example question** that reflects how to call the model from a Python application. Upload the results to the doc you will  upload to ADI. **The picture must show the USERNAME/EMAIL to be taken as VALID**.
 
 
 
