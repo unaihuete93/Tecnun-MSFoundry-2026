@@ -15,7 +15,7 @@
 - TASK 6 - Exploring tools and token consumption
     - 6.1 Web Search
     - 6.2 Code Interpreter
-- TASK 7 - Python App 
+    - 6.3 Microsoft Learn MCP server
 
 
 
