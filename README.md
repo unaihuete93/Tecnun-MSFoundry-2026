@@ -422,6 +422,8 @@ Upload the results to the doc you will upload to ADI. **The picture must show th
 
 Connect to the agent created in previous exercise from a Python program running in your laptop. 
 
+**Include your python code in the word document you will upload to ADI.**
+
 
 
 
