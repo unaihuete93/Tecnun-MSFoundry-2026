@@ -425,5 +425,22 @@ Connect to the agent created in previous exercise from a Python program running 
 **Include your python code in the word document you will upload to ADI.**
 
 
+# CHALLENGE - Day 4
+
+During this challenge, you will create a agentic solution **for a scenario decided by you**that meets the following requirements:
+- Agent should use an existing model in our Foundry Project
+- Agent should be created in Foundry (either using the UI or programmatically - Foundry SDK)
+- Agent should be configured to use:
+    - System/instructions message to guide the agent's behavior
+    - Code Interpreter
+    - An MCP server integration (you research which one is suitable for your scenario)
+    - Custom Data: You will create sample PDF documents (using any GenAI) and provide it to your Teacher (he will take care of creating the index you will connect to your agent)
+- Create a program thas interacts with the agent you have configured, sending prompts and receiving responses.
+    - The program should handle authentication and connection to the agent. 
+    - Start with the terminal as an interface
+    - (EXTRA) create web interface for interacting with the agent.
+
+
+
 
 
