@@ -326,7 +326,7 @@ Apart from the answer, RAG solutions can also be customized to **only return ans
 #### TASK 5 - EXERCISE 1
 Try you own example question that reflects how RAG is used to provide relevant answers based on custom data. 
 
-Take a look at the provided PDF brocures that have been indexed in Azure Search for ideas. You can see the PDFs in the repo folder [Brochures](Brochures)
+Take a look at the provided PDF brocures that have been indexed in Azure Search for ideas. You can see the PDFs in the repo folder [Brochures](brochures)
 
 Show a Agent Playground query that gives an answer citating the downloaded custom PDF documents. 
 Upload the results to the doc you will  upload to ADI. **The picture must show the USERNAME/EMAIL to be taken as VALID**.
