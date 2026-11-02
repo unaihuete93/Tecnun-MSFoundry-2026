@@ -418,6 +418,9 @@ Think about an scenario in which the configured Microsoft Learn MCP server would
 Upload the results to the doc you will upload to ADI. **The picture must show the USERNAME/EMAIL to be taken as VALID**. Include screenshots of the tool configuration, execution/chart results, and reported token usage; do not include keys or credentials.
 
 
+#### Task 7 - Challenge
+
+Connect to the agent created in previous exercise from a Python program running in your laptop. 
 
 
 
