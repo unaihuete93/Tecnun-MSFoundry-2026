@@ -440,6 +440,8 @@ During this challenge, you will create a agentic solution **for a scenario decid
     - The program should handle authentication and connection to the agent. 
     - Start with the terminal as an interface
     - (EXTRA) create web interface for interacting with the agent.
+    - (EXTRA) Upload the code to a GitHub repository
+        - Setup a GitHub Codespace to run the program 
 
 
 
