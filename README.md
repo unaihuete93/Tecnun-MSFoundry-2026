@@ -434,8 +434,9 @@ During this challenge, you will create a agentic solution **for a scenario decid
     - System/instructions message to guide the agent's behavior
     - Code Interpreter
     - An MCP server integration (you research which one is suitable for your scenario)
-    - Custom Data: You will create sample PDF documents (using any GenAI) and provide it to your Teacher (he will take care of creating the index you will connect to your agent)
-- Create a program thas interacts with the agent you have configured, sending prompts and receiving responses.
+    - Custom Data: You will create sample PDF documents (using any GenAI) 
+        - Upload it to storage account (foundrysaunav ), container (challenge4)
+        - teacher will prepare the Azure Search index to connect to the agent. 
     - The program should handle authentication and connection to the agent. 
     - Start with the terminal as an interface
     - (EXTRA) create web interface for interacting with the agent.
